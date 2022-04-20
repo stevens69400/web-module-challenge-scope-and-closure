@@ -30,11 +30,12 @@ console.log('example task:', processFirstItem(['foo','bar'],function(str){return
   Study the code for counter1 and counter2, then answer the questions below.
   
   1. What is the difference between counter1 and counter2?
-  
+  counter1 returns it own function 
   2. Which of the two uses a closure? How can you tell?
-  
+  counter 2 uses closure 
   3. In what scenario would the counter1 code be preferable? In what scenario would 
-     counter2 be better?  
+     counter2 be better? 
+      
 */
 
 // counter1 code
@@ -64,11 +65,10 @@ Use the inning function below to do the following:
 NOTE: This will be a callback function for the tasks below
 */
 
-function inning(/*Code Here*/){
-    /*Code Here*/
+function inning(){
+    return Math.floor(Math.random()*3); 
 }
-
-
+console.log(inning());
 /* ⚾️⚾️⚾️ Task 3: finalScore() ⚾️⚾️⚾️
 Use the finalScore function below to do the following:
   1. Receive the callback function `inning` that was created in Task 2 in the first parameter
@@ -83,10 +83,20 @@ Use the finalScore function below to do the following:
 }
 */ 
 
-function finalScore(/*Code Here*/){
-  /*Code Here*/
+function finalScore(inningCB, numberInnings){
+  let homeScore = 0;
+  let awayScore = 0;
+    for (let i = 0; i < numberInnings; i++) {
+    homeScore = homeScore + inningCB();
+    awayScore = awayScore + inningCB(); 
+  }
+  const score = {
+    "Home": homeScore,
+    "Away": awayScore
+  }
+  return score;
 }
-
+console.log(finalScore(inning, 9));
 
 /* ⚾️⚾️⚾️ Task 4: getInningScore() ⚾️⚾️⚾️
 Use the getInningScore() function below to do the following:
@@ -101,12 +111,19 @@ For example: invoking getInningScore(inning) might return this object:
   */
 
 
-function getInningScore(/*Your Code Here */) {
-  /*Your Code Here */
-
+function getInningScore(inningCB) {
+  let homeScore = 0;
+  let awayScore = 0;
+  for (let i = 0; i < 2; i++) {
+  homeScore =  homeScore + inningCB();
+  awayScore = awayScore + inningCB();
+  }
+const score = {
+  "Home": homeScore,
+  "Away": awayScore
+  }
+  return score;
 }
-
-
 /* STRETCH: ⚾️⚾️⚾️ Task 5: scoreboard() ⚾️⚾️⚾️
 Use the scoreboard function below to do the following:
   1. Receive the callback function in the first parameter that will take `getInningScore` from Task 4 as its argument
